@@ -24,7 +24,7 @@ module test(
     
     `ifdef TEST_SERIAL // send a defined password, dump to vcd and check it decodes with sigrok
         always #42 clk = !clk; // roughly 12MHz clock
-        reg [8*8-1:0] password = 64'haabbccddeeffaabb;
+        reg [8*8-1:0] password = 64'h293a216b33713234;
     `endif
     `ifdef FORMAL
         // allow solver to choose password
@@ -79,7 +79,7 @@ module test(
     `ifdef TEST_SERIAL 
     initial begin
         $dumpfile("test.vcd");
-        $dumpvars(0,test.tx, test.clk);
+        $dumpvars(0,test.tx, test.clk, test.led_g_n); // sigrok can't load vcd with multi bit traces...
         wait(char_counter == 10);
         $finish;
     end
