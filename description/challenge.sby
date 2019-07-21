@@ -1,0 +1,14 @@
+[options]
+mode cover
+depth 15000
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal serial.v challenge.v
+prep -top test
+
+[files]
+serial.v
+challenge.v

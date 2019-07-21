@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sun Jul 21 13:07:10 2019
+[*]
+[dumpfile] "/home/matt/fpga/tpm2137/description/test.vcd"
+[dumpfile_mtime] "Sun Jul 21 13:07:04 2019"
+[dumpfile_size] 226794
+[savefile] "/home/matt/fpga/tpm2137/description/serial.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 104 4
+*-19.111362 704000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] test.
+[sst_width] 223
+[signals_width] 311
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@28
+test.clk
+@29
+test.tx
+[pattern_trace] 1
+[pattern_trace] 0

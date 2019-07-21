@@ -1,0 +1,32 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sun Jul 21 13:42:00 2019
+[*]
+[dumpfile] "/home/matt/fpga/tpm2137/description/challenge/engine_0/trace0.vcd"
+[dumpfile_mtime] "Sun Jul 21 13:39:27 2019"
+[dumpfile_size] 527963
+[savefile] "/home/matt/fpga/tpm2137/description/challenge.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-14.000000 74900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 384
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@28
+smt_clock
+@420
+smt_step
+@28
+test.clk
+test.reset
+@22
+test.baud_counter[7:0]
+test.bit_counter[3:0]
+test.char_counter[3:0]
+test.password[63:0]
+@29
+test.tx
+[pattern_trace] 1
+[pattern_trace] 0
