@@ -1,19 +1,20 @@
 [*]
-[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Jul 21 13:42:00 2019
+[*] GTKWave Analyzer v3.3.105 (w)1999-2020 BSI
+[*] Tue Aug 25 15:11:02 2020
 [*]
-[dumpfile] "/home/matt/fpga/tpm2137/description/challenge/engine_0/trace0.vcd"
-[dumpfile_mtime] "Sun Jul 21 13:39:27 2019"
-[dumpfile_size] 527963
-[savefile] "/home/matt/fpga/tpm2137/description/challenge.gtkw"
+[dumpfile] "/home/matt/work/fpga/TPM2137/description/challenge/engine_0/trace0.vcd"
+[dumpfile_mtime] "Tue Aug 25 15:11:01 2020"
+[dumpfile_size] 30466839
+[savefile] "/home/matt/work/fpga/TPM2137/description/challenge.gtkw"
 [timestart] 0
-[size] 1000 600
+[size] 1811 726
 [pos] -1 -1
 *-14.000000 74900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[sst_width] 223
+[treeopen] test.
+[sst_width] 272
 [signals_width] 384
 [sst_expanded] 1
-[sst_vpaned_height] 152
+[sst_vpaned_height] 196
 @28
 smt_clock
 @420
@@ -26,7 +27,10 @@ test.baud_counter[7:0]
 test.bit_counter[3:0]
 test.char_counter[3:0]
 test.password[63:0]
-@29
+@28
 test.tx
+test.chip_0.led_g_n
+@29
+test.chip_0.led_r_n
 [pattern_trace] 1
 [pattern_trace] 0

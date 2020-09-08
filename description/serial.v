@@ -2,15 +2,10 @@
 `timescale 1ns/1ns
 
 module test(
-    `ifdef FORMAL
     input clk
-    `endif
 );
 
     reg reset = 1;
-    `ifdef TEST_SERIAL
-        reg clk = 0;
-    `endif
     reg tx = 1;
     wire led_g_n;
     wire led_r_n;
@@ -22,20 +17,13 @@ module test(
     localparam BAUD_P = 12000000 / 115200; // = 104
     localparam RESET_TIME = 500;
     
-    `ifdef TEST_SERIAL // send a defined password, dump to vcd and check it decodes with sigrok
-        always #42 clk = !clk; // roughly 12MHz clock
-        reg [8*8-1:0] password = 64'h293a216b33713234;
-    `endif
-    `ifdef FORMAL
-        // allow solver to choose password
-        (* anyconst *) reg [8*8-1:0] password;
+    // allow solver to choose password
+    (* anyconst *) reg [8*8-1:0] password;
 
-        // cover the chip unlocking - green led active low
-        always @(posedge clk) begin
-            cover(!led_g_n);
-//            cover(char_counter == 2);
-        end
-    `endif
+    // cover the chip unlocking - green led active low
+    always @(posedge clk) begin
+        cover(!led_g_n);
+    end
 
     localparam BAUD_W = 7;
     reg [10:0] reset_counter = 0;
@@ -75,14 +63,5 @@ module test(
         else if( char_counter < 8)
             tx <= password[(bit_counter-1)+char_counter*8];
     end
-
-    `ifdef TEST_SERIAL 
-    initial begin
-        $dumpfile("test.vcd");
-        $dumpvars(0,test.tx, test.clk, test.led_g_n); // sigrok can't load vcd with multi bit traces...
-        wait(char_counter == 10);
-        $finish;
-    end
-    `endif
 
 endmodule
