@@ -31,4 +31,4 @@ decode: test.vcd
 	~/Downloads/sigrok-cli-0.7.1-x86_64.AppImage -i test.vcd -P uart:rx=tx:baudrate=115200 -A uart=rx-data
 
 clean:
-	rm -f challenge.v challenge.asc test.vcd
+	rm -f challenge.v challenge.asc test.vcd serial.out
