@@ -2,28 +2,42 @@
 `timescale 1ns/1ns
 
 module test(
+    `ifdef FORMAL
     input clk
+    `endif
 );
 
     reg reset = 1;
+    `ifdef TEST_SERIAL
+        reg clk = 0;
+    `endif
     reg tx = 1;
     wire led_g_n;
     wire led_r_n;
 
+
     // tpm2137
-    chip chip_0 (.clk(clk), .rx(tx), .led_g_n(led_g_n), .led_r_n(led_r_n));
+    top top (.clk_12(clk), .uart(tx), .led_green(led_g_n), .led_red(led_r_n));
 
     // baud = 115200, clk = 12Mhz
     localparam BAUD_P = 12000000 / 115200; // = 104
     localparam RESET_TIME = 500;
     
-    // allow solver to choose password
-    (* anyconst *) reg [8*8-1:0] password;
+    `ifdef TEST_SERIAL // send a defined password, dump to vcd and check it decodes with sigrok
+        always #42 clk = !clk; // roughly 12MHz clock
+        reg [8*8-1:0] password = 64'h3231656d6b636168;
+    `endif
 
-    // cover the chip unlocking - green led active low
-    always @(posedge clk) begin
-        cover(!led_g_n);
-    end
+    `ifdef FORMAL
+        // allow solver to choose password
+        (* anyconst *) reg [8*8-1:0] password;
+
+        // cover the chip unlocking - green led active low
+        always @(posedge clk) begin
+            cover(!led_g_n);
+        end
+    `endif
+
 
     localparam BAUD_W = 7;
     reg [10:0] reset_counter = 0;
@@ -63,5 +77,15 @@ module test(
         else if( char_counter < 8)
             tx <= password[(bit_counter-1)+char_counter*8];
     end
+
+    `ifdef TEST_SERIAL 
+    initial begin
+        $dumpfile("test.vcd");
+        $display("password = 0x%x", password);
+        $dumpvars(0,test.tx, test.clk, test.led_g_n); // sigrok can't load vcd with multi bit traces...
+        wait(char_counter == 10);
+        $finish;
+    end
+    `endif
 
 endmodule

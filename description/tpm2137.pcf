@@ -1,4 +1,4 @@
-set_io clk 35
-set_io rx 6
-set_io led_r_n 11
-set_io led_g_n 37
+set_io clk_12 35
+set_io uart 6
+set_io led_green 11
+set_io led_red 37
