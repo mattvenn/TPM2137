@@ -27,7 +27,7 @@ dump_serial_vcd: challenge.v
 gtkwave_serial:
 	gtkwave test.vcd serial.gtkw
 
-decode: dump_serial_vcd
+decode: test.vcd
 	~/Downloads/sigrok-cli-0.7.1-x86_64.AppImage -i test.vcd -P uart:rx=tx:baudrate=115200 -A uart=rx-data
 
 clean:
