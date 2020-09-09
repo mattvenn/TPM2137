@@ -6,6 +6,7 @@ depth 15000
 smtbmc z3
 
 [script]
+read -noverific
 read -formal serial.v challenge.v
 prep -top test
 
