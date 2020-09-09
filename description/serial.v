@@ -16,7 +16,7 @@ module test(
     wire led_r_n;
 
     // tpm2137
-    chip chip_0 (.clk(clk), .rx(tx), .led_g_n(led_g_n), .led_r_n(led_r_n));
+    top top (.clk_12(clk), .uart(tx), .led_green(led_g_n), .led_red(led_r_n));
 
     // baud = 115200, clk = 12Mhz
     localparam BAUD_P = 12000000 / 115200; // = 104
@@ -24,7 +24,7 @@ module test(
     
     `ifdef TEST_SERIAL // send a defined password, dump to vcd and check it decodes with sigrok
         always #42 clk = !clk; // roughly 12MHz clock
-        reg [8*8-1:0] password = 64'h293a216b33713234;
+        reg [8*8-1:0] password = 64'h3231656d6b636168;
     `endif
     `ifdef FORMAL
         // allow solver to choose password
@@ -79,6 +79,7 @@ module test(
     `ifdef TEST_SERIAL 
     initial begin
         $dumpfile("test.vcd");
+        $display(password);
         $dumpvars(0,test.tx, test.clk, test.led_g_n); // sigrok can't load vcd with multi bit traces...
         wait(char_counter == 10);
         $finish;
