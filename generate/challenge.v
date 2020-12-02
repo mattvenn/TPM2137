@@ -1,6 +1,6 @@
 `default_nettype none
 
-module top(
+module challenge(
         input uart,
         input clk_10,
         output led_green,
@@ -131,7 +131,14 @@ always @(posedge clk_10) begin
         end
 end
 
-`include "want.v"
+reg [7:0] want_0 = 8'b11110100;
+reg [7:0] want_1 = 8'b01101011;
+reg [7:0] want_2 = 8'b00011111;
+reg [7:0] want_3 = 8'b00110011;
+reg [7:0] want_4 = 8'b11001000;
+reg [7:0] want_5 = 8'b11111111;
+reg [7:0] want_6 = 8'b10111111;
+reg [7:0] want_7 = 8'b00000000;
 
 wire open =   (want_0 == given_0) &&
                 (want_1 == given_1) &&
